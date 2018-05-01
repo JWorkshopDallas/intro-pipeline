@@ -1,10 +1,25 @@
 pipeline {
     agent none
     stages {
-        stage('Publish Event') {
+        stage('Testing') {
+        parallel {
+          stage('Java 7') {
+            agent { label 'jdk7' }
             steps {
-                publishEvent simpleEvent('desaiM')
+              container('maven') {
+                sh 'mvn -v'
+              }
             }
+          }
+          stage('Java 8') {
+            agent { label 'jdk8' }
+            steps {
+              container('maven') {
+                sh 'mvn -v'
+              }
+            }
+          }
         }
+      }
     }
 }
