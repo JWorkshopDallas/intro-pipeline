@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Say Hello') {
       steps {
-        echo "Hello ${params.Name}!"
+        echo "Updated Hello ${params.Name}!"
         sh 'java -version'
         echo "${TEST_USER_USR}"
         echo "${TEST_USER_PSW}"
