@@ -5,18 +5,12 @@ pipeline {
   stages {
     stage('Say Hello') {
       steps {
-        echo "Updated Hello ${params.Name}!"
+        echo "Hello ${params.Name}!"
         sh 'java -version'
         echo "${TEST_USER_USR}"
         echo "${TEST_USER_PSW}"
       }
     }
-    stage('Checkpoint') {
-         agent none
-         steps {
-            checkpoint 'Checkpoint'
-         }
-      }
     stage('Testing') {
       failFast true
       parallel {
@@ -42,7 +36,7 @@ pipeline {
     }
   }
   environment {
-    MY_NAME = 'Mahesh'
+    MY_NAME = 'Mary'
     TEST_USER = credentials('test-user')
   }
   post {
